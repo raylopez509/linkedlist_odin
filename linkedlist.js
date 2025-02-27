@@ -29,7 +29,7 @@ class LinkedList {
     else {
       let node = this.head;
       newNode.nextNode = node;
-      this.head = newNode
+      this.head = newNode;
     }
     this.size++;
   }
@@ -59,6 +59,18 @@ class LinkedList {
       newTail.nextNode = null;
     }
     this.size--;
+  }
+
+  contains(value) {
+    let node = this.head;
+    while(node != null) {
+      console.log(node.value + " = " + value);
+      if(node.value === value) {
+        return true;
+      }
+      node = node.nextNode;
+    }
+    return false;
   }
 
   toString() {
@@ -91,5 +103,6 @@ ll.append(1);
 ll.append(2);
 ll.prepend(0);
 console.log(ll.toString());
-ll.pop();
+console.log(ll.contains(1));
+console.log(ll.contains(2));
 console.log(ll.toString());
