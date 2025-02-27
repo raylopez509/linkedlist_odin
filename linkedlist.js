@@ -132,8 +132,28 @@ class LinkedList {
         this.tail = newNode;
       }
     }
+    this.size++;
+  }
+  
+  removeAt(index) {
+    let node = this.head;
+    let prevNode = null;
+    for(let i = 0; i < index; i++) {
+      prevNode = node;
+      node = node.nextNode;
+    }
+    if(prevNode == null) {
+      this.head = node;
+    }
+    else {
+      prevNode.nextNode = node.nextNode;
+      if(prevNode.nextNode == null) {
+        this.tail = prevNode;
+      }
+    }
   }
 }
+
 
 class Node {
   constructor(value = null, nextNode = null) {
@@ -146,4 +166,6 @@ const ll = new LinkedList();
 ll.append("dog");
 ll.append("cat");
 ll.insertAt("mouse", 1);
+console.log(ll.toString());
+ll.removeAt(1);
 console.log(ll.toString());
