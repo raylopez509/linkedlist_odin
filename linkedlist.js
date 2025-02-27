@@ -64,13 +64,25 @@ class LinkedList {
   contains(value) {
     let node = this.head;
     while(node != null) {
-      console.log(node.value + " = " + value);
       if(node.value === value) {
         return true;
       }
       node = node.nextNode;
     }
     return false;
+  }
+
+  find(value) {
+    let index = 0;
+    let node = this.head;
+    while(node != null) {
+      if(node.value === value) {
+        break;
+      }
+      node = node.nextNode;
+      index++;
+    }
+    return index;
   }
 
   toString() {
@@ -89,6 +101,38 @@ class LinkedList {
       return str;
     }
   }
+
+  insertAt(value, index) {
+    let newNode = new Node(value);
+    if(index == 0) {
+      if(this.head == this.tail) {
+        this.tail = newNode.nextNode;
+      }
+      newNode.nextNode = this.head;
+      this.head = newNode;
+    }
+    else {
+      let node = this.head;
+      let prevNode = null;
+      for(let i = 0; i < index; i++) {
+        prevNode = node;
+        node = node.nextNode;
+      }
+      
+      if(prevNode == null) {
+        this.head = newNode;
+        newNode.nextNode = node;
+      }
+      else {
+        prevNode.nextNode = newNode;
+        newNode.nextNode = node;
+      }
+
+      if(newNode.nextNode == null) {
+        this.tail = newNode;
+      }
+    }
+  }
 }
 
 class Node {
@@ -99,10 +143,7 @@ class Node {
 }
 
 const ll = new LinkedList();
-ll.append(1);
-ll.append(2);
-ll.prepend(0);
-console.log(ll.toString());
-console.log(ll.contains(1));
-console.log(ll.contains(2));
+ll.append("dog");
+ll.append("cat");
+ll.insertAt("mouse", 1);
 console.log(ll.toString());
