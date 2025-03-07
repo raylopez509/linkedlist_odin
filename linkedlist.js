@@ -143,7 +143,7 @@ class LinkedList {
       node = node.nextNode;
     }
     if(prevNode == null) {
-      this.head = node;
+      this.head = node.nextNode;
     }
     else {
       prevNode.nextNode = node.nextNode;
